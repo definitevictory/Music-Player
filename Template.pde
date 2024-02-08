@@ -1,8 +1,12 @@
 //Test
-void setup() {} //End Setup
-
+//Global Variables
+//
+void setup() {} //End setup
+//
 void draw() {} //End draw
-
-void KeyPressed() {} //End KeyPressed
-
-void MousePressed() {}End MousePressed
+//
+void keyPressed() {} //End keyPressed
+//
+void mousePressed() {} //End mousePressed
+//
+// End MAIN Program
