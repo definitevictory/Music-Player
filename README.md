@@ -2,7 +2,9 @@
 CS 10 main project
 
 # To Do List
-- [] Item 1
-- [x] Item done
-- [ ] <del>dont want to do this<del>
-- [ ] 
+- [] Play and pause buttons
+- [] Can play songs
+- [] Goes to next song once current one ends
+- [] Image for cover of song
+- [] Progress bar or timer
+- [] 
