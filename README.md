@@ -7,4 +7,5 @@ CS 10 main project
 - [] Goes to next song once current one ends
 - [] Image for cover of song
 - [] Progress bar or timer
-- [] 
+- [] Show name of song
+- [ ] Fast Forward and Rewind Button
