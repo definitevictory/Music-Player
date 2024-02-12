@@ -9,3 +9,6 @@ CS 10 main project
 - [ ] Progress bar or timer
 - [ ] Show name of song
 - [ ] Fast Forward and Rewind Button
+- [ ] Skip to next song button
+- [ ] Volume bar
+- [ ] Music List
