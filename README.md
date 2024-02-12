@@ -10,5 +10,7 @@ CS 10 main project
 - [ ] Show name of song
 - [ ] Fast Forward and Rewind Button
 - [ ] Skip to next song button
-- [ ] Volume bar
+- [ ] Change volume bar
 - [ ] Music List
+- [ ] Change background colour
+- [ ] Loop button
