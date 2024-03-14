@@ -28,14 +28,12 @@
     <style>
         * {
             box-sizing: border-box;
-            font-size: 2vw;
         }
         div { border: thin dotted red; }
 
         .header {
             border: 1px solid green;
             padding: 15px;
-            font-size: 5vw;
         }
 
         .nav {
@@ -46,14 +44,14 @@
         }
 
         .main {
-         width: 65%;
+         width: 80%;
          float: left;
          padding: 15px;
          border: 1px solid rgb(19, 0, 128);
         }
 
         .aside {
-         width: 40%;
+         width: 20%;
          float: right;
          padding: 15px;
          border: 1px solid rgb(19, 0, 128);
@@ -73,7 +71,7 @@
         }
 
         .article {
-         width: 50%;
+         width: 60%;
          font-size: 2vw;
         }
 
@@ -87,9 +85,11 @@
 <!-- Start here, BODY Semantic Tags-->
 <body>
     <div></div>
-    <header class="header">Test</header>
+    <header class="header;" style="text-align: center;"><h1>Music Player</h1>
+    <h6 style="text-align: center;"> <sub>Only Works on Androids</sub></h6>
+    </header>
     <nav class="nav"> 
-        <h3 style="text-align: center;">Navigation</h3>
+        <h2 style="text-align: center;">Navigation</h2>
         <!-- Hyperlinks do not have any formating, use unorganized or organized lists-->
 
         <ul style="list-style-type: square;">
@@ -110,10 +110,10 @@
 
         <p>Paragraph Tag, any writing</p>
         </nav>
-    <main class="main">Can only work on Androids</main>
-    <aside class="aside">Aside, supports main material</aside>
-    <section class="main">How to use the Music Player</section>
-    <article class="article">To use this you have to download the music onto the file. To play you must click the play button and you may fast forward or rewind using the arrows. <br> <br> <br></article>
+    <main class="main"> <h2>Install a portable music player on your mobile device in order to listen to tunes anywhere!</h2></main>
+        <article class="article"><h4>This music player comes with set songs
+        such as: <br> song name <br> <br> song name <br> <br> </h4> <h5> contact the developer in order to add custom songs or remove songs.</h5></article>
+     <aside class="aside">put picutre of musicplayer here</aside>
     <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
     <footer class="footer">Footer</footer>
 </body>
