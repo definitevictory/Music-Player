@@ -29,5 +29,5 @@ CS 10 main project
 - [ ] home page
 - [ ] Installation
 - [ ] Instructions
-- [ ] Developer page
-- [ ] updates / patchnotes?
+- [ ] Developer page put some information in here
+- [ ] updates / patchnotes? maybe add a border to separate each "update"
