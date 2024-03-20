@@ -4,7 +4,7 @@
     <!-- Used by the Keyboard-->
     <meta charset="utf-8">
 
-    <title>Child Template</title>
+    <title>Patchnotes</title>
     <!-- Tab Favicon can be changed too, Google this-->
     <!-- See https://www.w3schools.com/howto/howto_html_favicon.asp , accessed 20240214-->
 
@@ -28,14 +28,13 @@
     <style>
         * {
             box-sizing: border-box;
-            //font-size: 2vw;
         }
         div { border: thin dotted red; }
 
         .header {
             border: 1px solid green;
             padding: 15px;
-            //font-size: 4vw;
+            background-color: rgb(237, 241, 251)
         }
 
         .nav {
@@ -43,7 +42,7 @@
             float: left;
             padding: 10px;
             border: 2px solid rgb(0, 0, 0);
-            background-color: rgb(196, 196, 196)
+            background-color: rgb(226, 225, 225)
         }
 
         .main {
@@ -68,8 +67,9 @@
         .article {
          width: 100%;
          float: left;
-         padding: 15px;
-         border: 1px solid rgb(19, 0, 128);
+         padding: 10px;
+         border: 1px inset;
+         background-color: rgb(241, 241, 241)
         }
         .section {
          width: 100%;
@@ -77,6 +77,14 @@
          padding: 15px;
          color: white
         }
+        .p2
+        {       
+         width: 100%;
+         float: left;
+         padding: 10px;
+         border: 2px inset;
+        }
+    
     </style>
 
     <noscript>Running javascript is not neccessary in this html page. fyi your feature to execute scripts is turned off</noscript>
@@ -87,8 +95,7 @@
 <body>
     <div>ViewPort Units are OFF</div>
     <header class="header">
-        <h1 style="text-align: center;"> Music Player</h1> 
-        <h3 style="text-align: center;"> Works only on Androids!</h3>
+        <h1 style="text-align: center;"> Updates!</h1> 
     </header>
     <nav class="nav"> 
         <h3 style="text-align: center;">Navigation</h3>
@@ -109,30 +116,32 @@
             <li><h5>Childpage <a href="childPage.html" target="_blank"> delete this</a></h5></li>
             <br>
         </ul></h5>
-
-        <p>Paragraph Tag, any writing</p>
-        <br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br>
         </nav>
     <main class="main">
-        <h1>Music Player Information!</h1>
-        <h2>In order to</h2>
-        <h4>H4: text</h4>
-        <p>Paragraphs can include different types of <sup>big writing </sup>and<sub>small writing</sub></p>
-        <a> Hyperlink, Text only in a tag.</a>
-        <br><br><br><br><br><br><br><br>
+        <h2>Versions</h2>
+        <p>Each version will have different features added. If you want those features you can reinstall the music player,
+           and if you dont want them you can keep the old versions.</p>
+            <br><br>
         <br>
-            <article class="article">
-                <h2>Article H-Tags, in h2</h2>
-                <h3>SubHeadings usually stop at H3, in h3</h3>
-                <p>Writing Only in P-Tags</p>
-                <a>Hyperlink, text only, in a-tag</a>
+            <article class="article"><ul style="list-style-type: ;">
+                <li><h3>Version 1</h3></li> </ul>
+                <p><sup>Created</sup></p>
+            </article>
+            <article class="article"><ul style="list-style-type: ;">
+                <li><h3>Version Number</h3></li> </ul>
+                <p><sup>Changes Made</sup></p>
+            </article>
+            <article class="article"><ul style="list-style-type: ;">
+                <li><h3>Version Number</h3></li> </ul>
+                <p><sup>Changes Made</sup></p>
             </article>
         </main>
     <aside class="aside"> 
-        <h2>Aside H tags, in h2</h2>
-        <h3>H3: text</h3>
-        <p>Paragraph Tag</p>
-        <a> hyperlink</a>
+        <p>These are the different versions of songs, if you want to you can try other people's music by installing their's. </p>
+        <p><sub>they are all updated to the latest version</sub></p>
+        <p2 class="p2"> <a href="Install.html" target="_blank">The original version (make it go to the specific version later when we know to)</a></p2>
+        <p2 class="p2"> <a href="Install.html" target="_blank">The original version (make it go to the specific version later when we know to)</a></p2>
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
         </aside>
     <section class="section"><br><br><br> aaaaaa<br><br><br></section>
