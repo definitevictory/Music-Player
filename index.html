@@ -67,14 +67,18 @@
 
     </style>
 
-    <noscript>Running javascript is not neccessary in this html page. fyi your feature to execute scripts is turned off</noscript>
+    <noscript>Javascript is used in this page</noscript>
 
 </head>
 
 <!-- Start here, BODY Semantic Tags-->
 <body>
-    <header class="header" style="text-align: center"><h1>Music Player</h1>
+    <header class="header" style="text-align: center"><h1 id="h1a">Music Player</h1>
     <h6 style="text-align: center;"> <sub>Only Works on Androids</sub></h6>
+    <script> 
+        document.getElementById("h1a").style.fontFamily="Brush Script MT"
+        document.getElementById("h1a").style.fontSize="500%"
+        </script>
     </header>
     <nav class="nav"> 
         <h3 style="text-align: center;">Navigation</h3>
@@ -101,9 +105,14 @@
         </nav>
     <main class="main"> <h2>Install a portable music player on your mobile device in order to listen to tunes anywhere!</h2></main>
     
-    <article class="article"><h4>This music player comes with set songs
-        such as: <br> song name <br> <br> song name <br> <br> </h4> 
+    <article class="article"><p id="h4a">This music player comes with set songs
+        such as: </p>
+        <p id="h4b"> <br> song name <br> <br> song name <br> <br> </p>
         <h5> contact the developer in order to add custom songs or remove songs.</h5>
+        <script> 
+        document.getElementById("h4a").style.fontSize = "larger";
+        document.getElementById("h4b").style.fontFamily="Georgia"
+        </script>
      <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></article>
     <aside class="aside"> <a> <img src="https://i.ytimg.com/vi/lg5zWJTQWx8/maxresdefault.jpg" alt="music player gui" style="max-width:100%;height:auto;">
         put picture of music player here </a> <br><br><br><br></aside>
