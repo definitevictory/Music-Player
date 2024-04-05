@@ -36,3 +36,5 @@ CS 10 main project
 - [x] Updates
 - [x] About Me
 - [x] Buttons/features
+# Favicon?
+- [x] https://t3.ftcdn.net/jpg/05/85/10/62/360_F_585106274_GbJNWuJ9gnj93G19sRT4eK54ojKysO0t.jpg
