@@ -23,6 +23,7 @@ float menuSong1X, menuSong1Y, menuSong1Width, menuSong1Height;
 float menuSong2X, menuSong2Y, menuSong2Width, menuSong2Height;
 float menuSong3X, menuSong3Y, menuSong3Width, menuSong3Height;
 float menuSong4X, menuSong4Y, menuSong4Width, menuSong4Height;
+float LoopX, LoopY, LoopWidth, LoopHeight;
 //
 void setup() {
   //println("HelloWorld");
@@ -67,7 +68,7 @@ void setup() {
   tprogressY = appHeight*63/100;
   tprogressWidth = appWidth*4/10;
   tprogressHeight = appHeight*1/25;
-  playX = appWidth*52/100;
+  playX = appWidth*53/100;
   playY = appHeight*75/100;
   playWidth = appWidth*3/100;
   playHeight= appHeight*4/100;
@@ -79,11 +80,11 @@ void setup() {
   pauseY = appHeight*75/100 ;
   pauseWidth = appWidth*3/100 ;
   pauseHeight = appHeight*4/100 ;
-  rewindX = appWidth*34/100 ;
+  rewindX = appWidth*32/100 ;
   rewindY = appHeight*75/100 ;
   rewindWidth = appWidth*3/100 ;
   rewindHeight = appHeight*4/100 ;
-  forwardX = appWidth*61/100 ;
+  forwardX = appWidth*64/100 ;
   forwardY = appHeight*75/100 ;
   forwardWidth = appWidth*3/100 ;
   forwardHeight = appHeight*4/100 ;
@@ -131,6 +132,10 @@ void setup() {
   menuSong4Y = appHeight*375/1000 ;
   menuSong4Width = appWidth*12/100 ;
   menuSong4Height = appHeight*4/100 ;
+  LoopX = appWidth*48/100 ;
+  LoopY = appHeight*88/100 ;
+  LoopWidth = appWidth*3/100 ;
+  LoopHeight  = appHeight*4/100 ;
   
   //Layout DIVs
   //rect(X, Y, Width, Height);
@@ -158,11 +163,8 @@ void setup() {
   rect(menuSong1X, menuSong1Y, menuSong1Width, menuSong1Height);
   rect(menuSong2X, menuSong2Y, menuSong2Width, menuSong2Height);
   rect(menuSong3X, menuSong3Y, menuSong3Width, menuSong3Height);
-  rect(menuSong4X, menuSong4Y, menuSong4Width, menuSong4Height); //probably wont use any more songs, dont add more.
-  /*
-  
-  rect(menuTitleX, menuTitleY, menuTitleWidth, menuTitleHeight);
-  */
+  rect(menuSong4X, menuSong4Y, menuSong4Width, menuSong4Height); //probably wont use any more songs, dont add more unless needed.
+  rect(LoopX, LoopY, LoopWidth, LoopHeight);
 } //End setup
 //
 void draw() {
