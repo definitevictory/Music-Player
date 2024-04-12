@@ -24,6 +24,7 @@ float menuSong2X, menuSong2Y, menuSong2Width, menuSong2Height;
 float menuSong3X, menuSong3Y, menuSong3Width, menuSong3Height;
 float menuSong4X, menuSong4Y, menuSong4Width, menuSong4Height;
 float LoopX, LoopY, LoopWidth, LoopHeight;
+float menuSong5X, menuSong5Y, menuSong5Width, menuSong5Height;
 //
 void setup() {
   //println("HelloWorld");
@@ -132,6 +133,10 @@ void setup() {
   menuSong4Y = appHeight*375/1000 ;
   menuSong4Width = appWidth*12/100 ;
   menuSong4Height = appHeight*4/100 ;
+  menuSong5X = appWidth*85/100 ;
+  menuSong5Y = appHeight*435/1000 ;
+  menuSong5Width = appWidth*12/100 ;
+  menuSong5Height = appHeight*4/100 ;
   LoopX = appWidth*48/100 ;
   LoopY = appHeight*88/100 ;
   LoopWidth = appWidth*3/100 ;
@@ -140,8 +145,8 @@ void setup() {
   //Layout DIVs
   //rect(X, Y, Width, Height);
   rect(backgroundX, backgroundY, backgroundWidth, backgroundHeight);
-  int centerX = appWidth*1/2;
-  int centerY = appHeight*1/2;
+  //int centerX = appWidth*1/2;
+  //int centerY = appHeight*1/2;
   //rect(centerX*1/2, centerY*1/2, appWidth*1/2, appHeight*1/2);
   rect(imageX, imageY, imageWidth, imageHeight);
   rect(songNameX, songNameY, songNameWidth, songNameHeight);
@@ -163,7 +168,8 @@ void setup() {
   rect(menuSong1X, menuSong1Y, menuSong1Width, menuSong1Height);
   rect(menuSong2X, menuSong2Y, menuSong2Width, menuSong2Height);
   rect(menuSong3X, menuSong3Y, menuSong3Width, menuSong3Height);
-  rect(menuSong4X, menuSong4Y, menuSong4Width, menuSong4Height); //probably wont use any more songs, dont add more unless needed.
+  rect(menuSong4X, menuSong4Y, menuSong4Width, menuSong4Height); 
+  rect(menuSong5X, menuSong5Y, menuSong5Width, menuSong5Height);//probably wont use any more songs, dont add more unless needed.
   rect(LoopX, LoopY, LoopWidth, LoopHeight);
 } //End setup
 //
