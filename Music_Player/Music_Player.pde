@@ -15,7 +15,7 @@ float volbarX, volbarY, volbarWidth, volbarHeight;
 float volPicX, volPicY, volPicWidth, volPicHeight;
 float volX, volY, volWidth, volHeight;
 float skipX, skipY, skipWidth, skipHeight;
-float tprogressX, tprogressY, tprogressWidth,tprogressHeight;
+float tprogressX, tprogressY, tprogressWidth, tprogressHeight;
 float menuX, menuY, menuWidth, menuHeight;
 float menuGUIX, menuGUIY, menuGUIWidth, menuGUIHeight;
 float menuTitleX, menuTitleY, menuTitleWidth, menuTitleHeight;
@@ -25,13 +25,17 @@ float menuSong3X, menuSong3Y, menuSong3Width, menuSong3Height;
 float menuSong4X, menuSong4Y, menuSong4Width, menuSong4Height;
 float LoopX, LoopY, LoopWidth, LoopHeight;
 float menuSong5X, menuSong5Y, menuSong5Width, menuSong5Height;
+
+//
+float backgroundColour, whiteBackground, darkBackground;
+Boolean whiteMode= false;
 //
 void setup() {
   //println("HelloWorld");
   //Concatenation & Inspecting Variables with Character Escapes
   println("Width: "+width+ "\tHeight: "+height+ "\tDisplay Width: "+displayWidth+ "\t\tDisplay Height: "+displayHeight);
   //NULL: all values are null until size(), arithmetic errors
-  println("Example Formula: add 1 to the width", width+1); 
+  println("Example Formula: add 1 to the width", width+1);
   //
   //Display:CANVAS  & Full Screen
   //size(600,500); //width,  height
@@ -41,7 +45,7 @@ void setup() {
   //println(appWidth, appHeight);
   //Display geometry: Landscape, Portrait, Square
   //Landscape is HARDCODED
-  String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "Turn your phone"; 
+  String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "Turn your phone";
   println (displayInstructions);
   //
   //Population
@@ -141,7 +145,7 @@ void setup() {
   LoopY = appHeight*88/100 ;
   LoopWidth = appWidth*3/100 ;
   LoopHeight  = appHeight*4/100 ;
-  
+
   //Layout DIVs
   //rect(X, Y, Width, Height);
   rect(backgroundX, backgroundY, backgroundWidth, backgroundHeight);
@@ -152,7 +156,7 @@ void setup() {
   rect(songNameX, songNameY, songNameWidth, songNameHeight);
   rect(tbarX, tbarY, tbarWidth, tbarHeight);
   rect(timeX, timeY, timeWidth, timeHeight);
-  rect(tprogressX, tprogressY, tprogressWidth,tprogressHeight);
+  rect(tprogressX, tprogressY, tprogressWidth, tprogressHeight);
   rect(playX, playY, playWidth, playHeight);
   rect(quitX, quitY, quitWidth, quitHeight);
   rect(pauseX, pauseY, pauseWidth, pauseHeight);
@@ -168,12 +172,25 @@ void setup() {
   rect(menuSong1X, menuSong1Y, menuSong1Width, menuSong1Height);
   rect(menuSong2X, menuSong2Y, menuSong2Width, menuSong2Height);
   rect(menuSong3X, menuSong3Y, menuSong3Width, menuSong3Height);
-  rect(menuSong4X, menuSong4Y, menuSong4Width, menuSong4Height); 
+  rect(menuSong4X, menuSong4Y, menuSong4Width, menuSong4Height);
   rect(menuSong5X, menuSong5Y, menuSong5Width, menuSong5Height);//probably wont use any more songs, dont add more unless needed.
   rect(LoopX, LoopY, LoopWidth, LoopHeight);
+  //Variable population
+  darkBackground = 0; //Gray Scale, much smaller than COLOR
+  whiteBackground = 255;
+  //whiteMode= true; //must ask to see blue light
+  //if ( hour ()>=9 && hour()<=17  ) backgroundColour = whiteBackground ;
+  //if ( hour ()<9 && hour()>17  ) backgroundColour = darkBackground ;
+  if (whiteMode==true && hour ()>=9 && hour()<=17) {
+    backgroundColour = whiteBackground;
+  } else {
+    backgroundColour = darkBackground;
+  }
 } //End setup
 //
 void draw() {
+  background(backgroundColour);//Grayscale
+  rect(quitX, quitY, quitWidth, quitHeight);
 } //End draw
 //
 void keyPressed() {
