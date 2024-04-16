@@ -27,8 +27,10 @@ float LoopX, LoopY, LoopWidth, LoopHeight;
 float menuSong5X, menuSong5Y, menuSong5Width, menuSong5Height;
 
 //
-float backgroundColour, whiteBackground, darkBackground;
-Boolean whiteMode= false;
+color backgroundColour, whiteBackground=255, darkBackground=0; //Grayscale, much smaller than color
+color foregroundColour;
+color white=255, yellow=#FFFF00, black=0; //Hexadecimals in color selector
+Boolean whiteMode=false;
 //
 void setup() {
   //println("HelloWorld");
@@ -159,7 +161,7 @@ void setup() {
   rect(tprogressX, tprogressY, tprogressWidth, tprogressHeight);
   rect(playX, playY, playWidth, playHeight);
   rect(quitX, quitY, quitWidth, quitHeight);
-  rect(pauseX, pauseY, pauseWidth, pauseHeight);
+  /*rect(pauseX, pauseY, pauseWidth, pauseHeight);
   rect(rewindX, rewindY, rewindWidth, rewindHeight);
   rect(forwardX, forwardY, forwardWidth, forwardHeight);
   rect(volbarX, volbarY, volbarWidth, volbarHeight);
@@ -174,29 +176,38 @@ void setup() {
   rect(menuSong3X, menuSong3Y, menuSong3Width, menuSong3Height);
   rect(menuSong4X, menuSong4Y, menuSong4Width, menuSong4Height);
   rect(menuSong5X, menuSong5Y, menuSong5Width, menuSong5Height);//probably wont use any more songs, dont add more unless needed.
-  rect(LoopX, LoopY, LoopWidth, LoopHeight);
+  rect(LoopX, LoopY, LoopWidth, LoopHeight);*/
   //Variable population
-  darkBackground = 0; //Gray Scale, much smaller than COLOR
-  whiteBackground = 255;
   //whiteMode= true; //must ask to see blue light
   //if ( hour ()>=9 && hour()<=17  ) backgroundColour = whiteBackground ;
   //if ( hour ()<9 && hour()>17  ) backgroundColour = darkBackground ;
   if (whiteMode==true && hour ()>=9 && hour()<=17) {
     backgroundColour = whiteBackground;
+    foregroundColour = black; //black
   } else {
     backgroundColour = darkBackground;
+    foregroundColour = yellow; //yellow,  hour ()<9 && hour()>17)
+    if ( hour ()>=9 && hour()<=17)foregroundColour = white;
   }
 } //End setup
 //
 void draw() {
-  background(backgroundColour);//Grayscale
+  background(backgroundColour);
+  fill(foregroundColour);
   rect(quitX, quitY, quitWidth, quitHeight);
 } //End draw
 //
-void keyPressed() {
+void keyPressed() { //Listener
+  if(key=='Q' || key=='q') exit();
+  if(key==CODED && keyCode==ESC) exit();
 } //End keyPressed
 //
-void mousePressed() {
+void mousePressed() { //Listener
+//quit button 
+if ( mouseX>quitX && mouseX<quitX+quitWidth && mouseY>quitY && mouseY<quitY+quitHeight) 
+{
+  exit() ;
+}
 } //End mousePressed
 //
 // End MAIN Program
