@@ -27,7 +27,7 @@ float LoopX, LoopY, LoopWidth, LoopHeight;
 float menuSong5X, menuSong5Y, menuSong5Width, menuSong5Height;
 
 //
-color backgroundColour, whiteBackground=255, darkBackground=0; //Grayscale, much smaller than color
+color backgroundColour, whiteBackground=255, darkBackground=0, purple=#FF00FF; //Grayscale, much smaller than color
 color foregroundColour;
 color white=255, yellow=#FFFF00, black=0; //Hexadecimals in color selector
 Boolean whiteMode=false;
@@ -37,7 +37,7 @@ void setup() {
   //Concatenation & Inspecting Variables with Character Escapes
   println("Width: "+width+ "\tHeight: "+height+ "\tDisplay Width: "+displayWidth+ "\t\tDisplay Height: "+displayHeight);
   //NULL: all values are null until size(), arithmetic errors
-  println("Example Formula: add 1 to the width", width+1);
+  //println("Example Formula: add 1 to the width", width+1);
   //
   //Display:CANVAS  & Full Screen
   //size(600,500); //width,  height
@@ -162,25 +162,26 @@ void setup() {
   rect(playX, playY, playWidth, playHeight);
   rect(quitX, quitY, quitWidth, quitHeight);
   /*rect(pauseX, pauseY, pauseWidth, pauseHeight);
-  rect(rewindX, rewindY, rewindWidth, rewindHeight);
-  rect(forwardX, forwardY, forwardWidth, forwardHeight);
-  rect(volbarX, volbarY, volbarWidth, volbarHeight);
-  rect(volPicX, volPicY, volPicWidth, volPicHeight);
-  rect(volX, volY, volWidth, volHeight);
-  rect(skipX, skipY, skipWidth, skipHeight);
-  rect(menuX, menuY, menuWidth, menuHeight);
-  rect(menuGUIX, menuGUIY, menuGUIWidth, menuGUIHeight);
-  rect(menuTitleX, menuTitleY, menuTitleWidth, menuTitleHeight);
-  rect(menuSong1X, menuSong1Y, menuSong1Width, menuSong1Height);
-  rect(menuSong2X, menuSong2Y, menuSong2Width, menuSong2Height);
-  rect(menuSong3X, menuSong3Y, menuSong3Width, menuSong3Height);
-  rect(menuSong4X, menuSong4Y, menuSong4Width, menuSong4Height);
-  rect(menuSong5X, menuSong5Y, menuSong5Width, menuSong5Height);//probably wont use any more songs, dont add more unless needed.
-  rect(LoopX, LoopY, LoopWidth, LoopHeight);*/
+   rect(rewindX, rewindY, rewindWidth, rewindHeight);
+   rect(forwardX, forwardY, forwardWidth, forwardHeight);
+   rect(volbarX, volbarY, volbarWidth, volbarHeight);
+   rect(volPicX, volPicY, volPicWidth, volPicHeight);
+   rect(volX, volY, volWidth, volHeight);
+   rect(skipX, skipY, skipWidth, skipHeight);
+   rect(menuX, menuY, menuWidth, menuHeight);
+   rect(menuGUIX, menuGUIY, menuGUIWidth, menuGUIHeight);
+   rect(menuTitleX, menuTitleY, menuTitleWidth, menuTitleHeight);
+   rect(menuSong1X, menuSong1Y, menuSong1Width, menuSong1Height);
+   rect(menuSong2X, menuSong2Y, menuSong2Width, menuSong2Height);
+   rect(menuSong3X, menuSong3Y, menuSong3Width, menuSong3Height);
+   rect(menuSong4X, menuSong4Y, menuSong4Width, menuSong4Height);
+   rect(menuSong5X, menuSong5Y, menuSong5Width, menuSong5Height);//probably wont use any more songs, dont add more unless needed.
+   rect(LoopX, LoopY, LoopWidth, LoopHeight);*/
   //Variable population
   //whiteMode= true; //must ask to see blue light
   //if ( hour ()>=9 && hour()<=17  ) backgroundColour = whiteBackground ;
   //if ( hour ()<9 && hour()>17  ) backgroundColour = darkBackground ;
+
   if (whiteMode==true && hour ()>=9 && hour()<=17) {
     backgroundColour = whiteBackground;
     foregroundColour = black; //black
@@ -194,20 +195,29 @@ void setup() {
 void draw() {
   background(backgroundColour);
   fill(foregroundColour);
+  fill(purple);
   rect(quitX, quitY, quitWidth, quitHeight);
+  if (mouseX>quitX && mouseX<quitX+quitWidth && mouseY>quitY && mouseY<quitY+quitHeight) {
+    fill(yellow);
+    rect(quitX+quitWidth*1/7,quitY+quitHeight*1/7,quitWidth*5/7,quitHeight*5/7);
+  } else {
+    fill(purple);
+  }
+
+  fill(foregroundColour); //to default
 } //End draw
 //
 void keyPressed() { //Listener
-  if(key=='Q' || key=='q') exit();
-  if(key==CODED && keyCode==ESC) exit();
+  if (key=='Q' || key=='q') exit();
+  if (key==CODED && keyCode==ESC) exit();
+  if (key=='E' || key=='e');
 } //End keyPressed
 //
 void mousePressed() { //Listener
-//quit button 
-if ( mouseX>quitX && mouseX<quitX+quitWidth && mouseY>quitY && mouseY<quitY+quitHeight) 
-{
-  exit() ;
-}
+  if ( mouseX>quitX && mouseX<quitX+quitWidth && mouseY>quitY && mouseY<quitY+quitHeight)
+  {
+    exit() ;
+  }
 } //End mousePressed
 //
 // End MAIN Program
