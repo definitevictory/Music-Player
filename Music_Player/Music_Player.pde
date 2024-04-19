@@ -25,7 +25,11 @@ float menuSong3X, menuSong3Y, menuSong3Width, menuSong3Height;
 float menuSong4X, menuSong4Y, menuSong4Width, menuSong4Height;
 float LoopX, LoopY, LoopWidth, LoopHeight;
 float menuSong5X, menuSong5Y, menuSong5Width, menuSong5Height;
-
+//
+PFont QuitFont;
+int size;
+color red=#FF0000;
+String Quittext="Quit";
 //
 color backgroundColour, whiteBackground=255, darkBackground=0, purple=#FF00FF; //Grayscale, much smaller than color
 color foregroundColour;
@@ -49,6 +53,11 @@ void setup() {
   //Landscape is HARDCODED
   String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "Turn your phone";
   println (displayInstructions);
+  //
+  String[] fontList = PFont.list(); //To list all fonts available on OS
+printArray(fontList); //see font use CreateFont
+size=40;
+QuitFont = createFont("Elephant", size); //Tools/Create Font/ Find Font/ Use size field/ Dont press OK, bugs
   //
   //Population
   backgroundX = appWidth*0;
@@ -203,6 +212,12 @@ void draw() {
   } else {
     fill(purple);
   }
+  fill(red);
+  
+textAlign(CENTER, CENTER); //align X+Y in processing reference (left, center, right| top, center, Bottom ,baseline.
+size=20;
+textFont(QuitFont, size);
+text(Quittext, quitX, quitY, quitWidth, quitHeight);
 
   fill(foregroundColour); //to default
 } //End draw
