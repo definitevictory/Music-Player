@@ -25,15 +25,16 @@ float menuSong3X, menuSong3Y, menuSong3Width, menuSong3Height;
 float menuSong4X, menuSong4Y, menuSong4Width, menuSong4Height;
 float LoopX, LoopY, LoopWidth, LoopHeight;
 float menuSong5X, menuSong5Y, menuSong5Width, menuSong5Height;
+float printinhour;
 //
 PFont QuitFont;
 int size;
 color red=#FF0000;
 String Quittext="Quit";
 //
-color backgroundColour, whiteBackground=255, darkBackground=0, purple=#FF00FF; //Grayscale, much smaller than color
 color foregroundColour;
-color white=255, yellow=#FFFF00, black=0; //Hexadecimals in color selector
+color white=255, yellow=#FFFF00, black=0, grey=#121212, blue=#6BD0EA, purple=#FF00FF, green=#58DE00, weakRed=#E10000; //Hexadecimals in color selector
+color backgroundColour, whiteBackground=255, darkBackground=0, nameColour,nameTextColour,tColour=weakRed; //Grayscale, much smaller than color
 Boolean whiteMode=false;
 //
 void setup() {
@@ -54,8 +55,8 @@ void setup() {
   String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "Turn your phone";
   println (displayInstructions);
   //
-  String[] fontList = PFont.list(); //To list all fonts available on OS
-printArray(fontList); //see font use CreateFont
+  //String[] fontList = PFont.list(); //To list all fonts available on OS
+//printArray(fontList); //see font use CreateFont
 size=40;
 QuitFont = createFont("Elephant", size); //Tools/Create Font/ Find Font/ Use size field/ Dont press OK, bugs
   //
@@ -194,9 +195,13 @@ QuitFont = createFont("Elephant", size); //Tools/Create Font/ Find Font/ Use siz
   if (whiteMode==true && hour ()>=9 && hour()<=17) {
     backgroundColour = whiteBackground;
     foregroundColour = black; //black
+    nameColour=blue;
+    nameTextColour=white;
   } else {
     backgroundColour = darkBackground;
     foregroundColour = yellow; //yellow,  hour ()<9 && hour()>17)
+    nameColour=grey;
+    nameTextColour=yellow;
     if ( hour ()>=9 && hour()<=17)foregroundColour = white;
   }
 } //End setup
@@ -212,7 +217,8 @@ void draw() {
   } else {
     fill(purple);
   }
-  fill(red);
+  //Text
+  fill(purple);
   
 textAlign(CENTER, CENTER); //align X+Y in processing reference (left, center, right| top, center, Bottom ,baseline.
 size=20;
@@ -220,12 +226,33 @@ textFont(QuitFont, size);
 text(Quittext, quitX, quitY, quitWidth, quitHeight);
 
   fill(foregroundColour); //to default
+    fill(grey);
+    rect(imageX, imageY, imageWidth, imageHeight);
+    //
+    fill(nameColour);
+    rect(songNameX, songNameY, songNameWidth, songNameHeight);
+    //
+    textAlign(LEFT,CENTER);
+    fill(nameTextColour);
+    textFont(QuitFont,size);
+    text(Quittext,songNameX*110/100, songNameY, songNameWidth, songNameHeight);
+    //
+    fill(tColour);
+    rect(tbarX, tbarY, tbarWidth, tbarHeight);
+    //
+    fill(green);
+    printinhour=minute();
+    //println(printinhour); test
+    rect(tprogressX, tprogressY, tprogressWidth*printinhour/60, tprogressHeight);
+    //
+    
+    
 } //End draw
 //
 void keyPressed() { //Listener
   if (key=='Q' || key=='q') exit();
   if (key==CODED && keyCode==ESC) exit();
-  if (key=='E' || key=='e');
+  if (key=='E' || key=='e') whiteMode=true;
 } //End keyPressed
 //
 void mousePressed() { //Listener
