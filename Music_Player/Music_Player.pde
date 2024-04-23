@@ -1,5 +1,17 @@
+//Library:use sketch.
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
 //Test
 //Global Variables
+Minim minim;  //object to access all functions
+AudioPlayer soundEffects1;
+AudioPlayer playList1;
+//
 int appWidth, appHeight;
 float backgroundX, backgroundY, backgroundWidth, backgroundHeight;
 float imageX, imageY, imageWidth, imageHeight;
@@ -52,9 +64,20 @@ void setup() {
   //println(appWidth, appHeight);
   //Display geometry: Landscape, Portrait, Square
   //Landscape is HARDCODED
-  String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "Turn your phone";
-  println (displayInstructions);
+  //String displayInstructions = ( appWidth >= appHeight ) ? "Good To Go" : "Turn your phone";
+  //println (displayInstructions);
   //
+  minim = new Minim(this);
+  String extension = ".mp3";
+  String quitButtonSound = "Punch.mp3";
+  String pathwaysoundEffects = "../soundEffects"; //relative path
+  print(pathwaysoundEffects+quitButtonSound+extension);
+  String path = sketchPath(pathwaysoundEffects+quitButtonSound+extention);//absolute path
+  println (path) 
+  soundEffects1 = minim.loadFile(path);
+  //playList1 = minim.loadFile(path);
+  //
+  
   //String[] fontList = PFont.list(); //To list all fonts available on OS
 //printArray(fontList); //see font use CreateFont
 size=40;
@@ -204,6 +227,8 @@ QuitFont = createFont("Elephant", size); //Tools/Create Font/ Find Font/ Use siz
     nameTextColour=yellow;
     if ( hour ()>=9 && hour()<=17)foregroundColour = white;
   }
+  //
+  //soundEffects1.loop();
 } //End setup
 //
 void draw() {
@@ -226,7 +251,7 @@ textFont(QuitFont, size);
 text(Quittext, quitX, quitY, quitWidth, quitHeight);
 
   fill(foregroundColour); //to default
-    fill(grey);
+    /*fill(grey);
     rect(imageX, imageY, imageWidth, imageHeight);
     //
     fill(nameColour);
@@ -245,19 +270,21 @@ text(Quittext, quitX, quitY, quitWidth, quitHeight);
     //println(printinhour); test
     rect(tprogressX, tprogressY, tprogressWidth*printinhour/60, tprogressHeight);
     //
-    
+    */
     
 } //End draw
 //
 void keyPressed() { //Listener
   if (key=='Q' || key=='q') exit();
   if (key==CODED && keyCode==ESC) exit();
-  if (key=='E' || key=='e') whiteMode=true;
+  if (key=='E' || key=='e') ;
 } //End keyPressed
 //
 void mousePressed() { //Listener
   if ( mouseX>quitX && mouseX<quitX+quitWidth && mouseY>quitY && mouseY<quitY+quitHeight)
   {
+      soundEffects1.loop();
+      delay(1500); //Parameter:milliseconds
     exit() ;
   }
 } //End mousePressed
