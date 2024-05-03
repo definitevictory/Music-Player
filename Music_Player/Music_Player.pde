@@ -23,11 +23,20 @@ color red=#FF0000;
 String Quittext="Quit";
 String nameText="nameofsong";
 //
+PImage backgroundImage;
+String backgroundImage2Name = "whiteModeBackground";
+String backgroundImageName ="darkModeBackground";
+String extension =".jpg";
+String pathway ="../imagesFolder/";
+String path = pathway+backgroundImageName+extension;
+//
 color foregroundColour;
 color white=255, yellow=#F0F000, black=0, grey=#121212, blue=#6BD0EA, purple=#FF00FF, green=#58DE00, weakRed=#E10000, orange=#FF9600,
-lightGrey=#E8E8E8,darkYellow=#969600, darkBlue=#08A4C9;//Hexadecimals in color selector
+  lightGrey=#E8E8E8, darkYellow=#969600, darkBlue=#08A4C9;//Hexadecimals in color selector
 color backgroundColour, whiteBackground=255, darkBackground=0, nameColour, nameTextColour, tColour=weakRed, otherBackgroundColour, skipColour, skipHoverColour; //Grayscale, much smaller than color
-Boolean whiteMode=false;
+Boolean dayMode=false; //starts at night mode
+Boolean lightMode=false; //dark mode start can be changed if user preference is made
+
 //
 void setup() {
   //println("HelloWorld");
@@ -48,17 +57,17 @@ void setup() {
   //println (displayInstructions);
   //
   minim = new Minim(this);
-  String extension = ".mp3";
+  String extensionMusic = ".mp3";
   String quitButtonSound = "Punch";
   String pathwaysoundEffects = "../soundEffects/"; //relative path
-  print(pathwaysoundEffects+quitButtonSound+extension);
-  String path = sketchPath(pathwaysoundEffects+quitButtonSound+extension);//absolute path
+  print(pathwaysoundEffects+quitButtonSound+extensionMusic);
+  String path = sketchPath(pathwaysoundEffects+quitButtonSound+extensionMusic);//absolute path
   //println (path) ;
   soundEffects1 = minim.loadFile(path);
   //playList1 = minim.loadFile(path);
   minim = new Minim(this);
   String pingSound= "Notification";
-  String path2 = sketchPath(pathwaysoundEffects+pingSound+extension);
+  String path2 = sketchPath(pathwaysoundEffects+pingSound+extensionMusic);
   soundEffects2 = minim.loadFile(path2);
   //
 
@@ -74,7 +83,25 @@ void setup() {
   //if ( hour ()>=9 && hour()<=17  ) backgroundColour = whiteBackground ;
   //if ( hour ()<9 && hour()>17  ) backgroundColour = darkBackground ;
 
-  if (whiteMode==true && hour ()>=9 && hour()<=17) {
+  if (dayMode==true && hour ()>=9 && hour()<=17) {
+    if (lightMode == true) {
+      backgroundColour = whiteBackground;
+      foregroundColour = black; //black
+      nameColour=blue;
+      nameTextColour=white;
+      otherBackgroundColour = lightGrey;
+      skipColour=blue;
+      skipHoverColour=darkBlue;
+    } else {
+      backgroundColour = darkBackground;
+      foregroundColour = yellow; //yellow,  hour ()<9 && hour()>17)
+      nameColour=grey;
+      nameTextColour=yellow;
+      otherBackgroundColour = grey;
+      skipColour = yellow;
+      skipHoverColour = darkYellow;
+      if ( hour ()>=9 && hour()<=17)foregroundColour = white;
+    }; //change between light/dark modes
     backgroundColour = whiteBackground;
     foregroundColour = black; //black
     nameColour=blue;
@@ -97,7 +124,34 @@ void setup() {
 } //End setup
 //
 void draw() {
-  background(backgroundColour);
+  //background(backgroundColour); goes byebye cuz image is below, need image go away to show
+
+  if (dayMode == true) {
+    path = pathway+backgroundImage2Name+extension;
+  }//change image
+  if (dayMode == false) {
+    path = pathway+backgroundImageName+extension;
+  }
+  if (lightMode == true) {
+    backgroundColour = whiteBackground;
+    foregroundColour = black; //black
+    nameColour=blue;
+    nameTextColour=white;
+    otherBackgroundColour = lightGrey;
+    skipColour=blue;
+    skipHoverColour=darkBlue;
+  } else {
+    backgroundColour = darkBackground;
+    foregroundColour = yellow; //yellow,  hour ()<9 && hour()>17)
+    nameColour=grey;
+    nameTextColour=yellow;
+    otherBackgroundColour = grey;
+    skipColour = yellow;
+    skipHoverColour = darkYellow;
+  }
+
+  backgroundImage = loadImage(path) ;
+  image(backgroundImage, backimageX, backimageY, backimageWidth, backimageHeight);
   fill(foregroundColour);
   fill(purple);
   rect(quitX, quitY, quitWidth, quitHeight);
@@ -160,28 +214,31 @@ void draw() {
   fill(otherBackgroundColour);
   rect(forwardX, forwardY, forwardWidth, forwardHeight);
   if (mouseX>forwardX && mouseX<forwardX+forwardWidth && mouseY>forwardY && mouseY<forwardY+forwardHeight) {
-  fill(orange);
-  rect(forwardX, forwardY, forwardWidth, forwardHeight);
+    fill(orange);
+    rect(forwardX, forwardY, forwardWidth, forwardHeight);
   }
   fill(otherBackgroundColour);
   rect(volbarX, volbarY, volbarWidth, volbarHeight);
   //
   fill(skipColour);
   rect(skipX, skipY, skipWidth, skipHeight);
-    if (mouseX>skipX && mouseX<skipX+skipWidth && mouseY>skipY && mouseY<skipY+skipHeight) {
-      fill(skipHoverColour);
-      rect(skipX, skipY, skipWidth, skipHeight);
-    }
+  if (mouseX>skipX && mouseX<skipX+skipWidth && mouseY>skipY && mouseY<skipY+skipHeight) {
+    fill(skipHoverColour);
+    rect(skipX, skipY, skipWidth, skipHeight);
+  }
   //
   fill(skipColour);
   rect(menuX, menuY, menuWidth, menuHeight);
-  if (mouseX>menuX && mouseX<menuX+menuWidth && mouseY>menuY && mouseY<menuY+menuHeight){
-  fill(skipHoverColour);
-  rect(menuX, menuY, menuWidth, menuHeight);
+  if (mouseX>menuX && mouseX<menuX+menuWidth && mouseY>menuY && mouseY<menuY+menuHeight) {
+    fill(skipHoverColour);
+    rect(menuX, menuY, menuWidth, menuHeight);
   }
   //
   fill(orange);
   rect(LoopX, LoopY, LoopWidth, LoopHeight);
+
+  println(dayMode);
+  println(lightMode);
 } //End draw
 //
 void keyPressed() { //Listener
@@ -189,10 +246,27 @@ void keyPressed() { //Listener
     soundeffect_1();
   };
   if (key==CODED && keyCode==ESC) exit();
-  if (key=='E' || key=='e')
-    ; //for whitemode
-} //End keyPressed
+  if (key=='E' || key=='e') {
+    if (dayMode == false) {
+      dayMode = true;
+    } else {
+      dayMode = false;
+    }
+  }
+  if (key=='O' || key=='o') {
+      if (lightMode == false) {
+        lightMode = true;
+      } else {
+        lightMode = false;
+      }
+    }
+  }
+  ;
+//for whitemode
+//End keyPressed
 //
+
+
 void mousePressed() { //Listener
   if ( mouseX>quitX && mouseX<quitX+quitWidth && mouseY>quitY && mouseY<quitY+quitHeight)
   {
@@ -204,6 +278,7 @@ void mousePressed() { //Listener
     return;
   }
 } //End mousePressed
+
 
 //
 // End MAIN Program
