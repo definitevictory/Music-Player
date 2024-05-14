@@ -9,8 +9,12 @@ import ddf.minim.ugens.*;
 //
 //Global Variables
 Minim minim;
-AudioPlayer playlist1;
-AudioPlayer soundEffects1;
+int numberSoundEffects = 1;//OS able to count
+int numberMusicSongs = 2;
+AudioPlayer[] playlist = new AudioPlayer [numberMusicSongs];
+AudioPlayer[] soundEffects= new AudioPlayer [numberSoundEffects];
+int currentSong = 0;
+
 
 //
 void setup() {
@@ -35,18 +39,39 @@ void setup() {
   String pathMusicAlive = sketchPath(pathwayMusic+ALIVE+extensionMusic);//absolute path
   //println ( path );
   //println("absolute path", pathMusicAlive);
-  soundEffects1 = minim.loadFile( path );
-  playlist1 = minim.loadFile (pathMusicAlive);//if no code breaks
+  soundEffects[0] = minim.loadFile( path );
+  playlist[0] = minim.loadFile (pathMusicAlive);//if no code it'll breaks
   //
-  //playlist1.loop(0);
+  //Note: Music starts before CANVAS ... Purpose of Player
+  //Note: See Easter Egg about Time-On and Looping Songs
+  //playlist[currentSong].loop(0);
   //
 }//End setup
 void draw() {
-  println("umu", playlist1.position(), "songLength", playlist1.length());
-    playlist1.loop(0);
+  println("umu", playlist[currentSong].position(), "songLength", playlist[currentSong].length());
+  /*loop feature can show how much loops
+   Easter egg program time for number of song loops
+   attention to timer for music player, times to the end of a song
+   if ( playList[currentSong].isLooping() && playList[currentSong].loopCount()!=-1 ) println("There are", playList[currentSong].loopCount(), "loops left.");
+   if ( playList[currentSong].isLooping() && playList[currentSong].loopCount()==-1 ) println("Looping Infinitely");
+   */
+  if (!playlist[currentSong].isPlaying()) println("nothing is playing pick a song.");
+  if ( playlist[currentSong].isPlaying() && !playlist[currentSong].isLooping() ) println("Play Once");
+
+  //playlist[currentSong].loop(0); //only play beginning over and over
 }
 
 void keyPressed () {
+  if (key== 'P'|| key== 'p') { //play and pause button
+    playlist[currentSong].play();
+    if (!playlist[currentSong].isPlaying()) {
+      playlist[currentSong].play();
+    } else {
+      playlist [currentSong].pause();
+
+      
+    }
+  }
 }
 
 void mousePressed() {
