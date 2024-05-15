@@ -5,7 +5,7 @@ CS 10 main project
 - [ ] Play and pause buttons
 - [ ] Can play songs
 - [ ] Goes to next song once current one ends
-- [ ] Image for cover of song
+- [ ] Image for cover of song, switches when song switches
 - [ ] Progress bar or timer
 - [ ] Show name of song
 - [ ] Fast Forward and Rewind Button
