@@ -14,6 +14,7 @@ CS 10 main project
 - [ ] Music List
 - [ ] Change background colour
 - [ ] Loop button
+- [ ] pain button , when time of song remaining is lower than 1 minute, restarts, if less than 80% of song remaining, restarts
 
 # Website index
 - [x] Header : change text to "Downloadable music player!"
