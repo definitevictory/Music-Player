@@ -59,20 +59,35 @@ void draw() {
   if ( playlist[currentSong].isPlaying() && !playlist[currentSong].isLooping() ) println("Play Once");
 
   //playlist[currentSong].loop(0); //only play beginning over and over
+  // Auto Play Code for Future Use
+  // Contains instructions from Key Board Short Cuts
+  if ( playlist[currentSong].isPlaying() ) {
+    //Empty IF, IS FALSE
+  } else if (playlist[currentSong].length() < 60000) {playlist[currentSong].rewind();//pain minutes in 3 , 180second, 180 000 ms. if time remaining less thatn, restart
+  //true if song less than 30 seconds stop, if greater then restart
+  } else if (!playlist[currentSong].isPlaying() && (playlist[currentSong].position() > playlist[currentSong].length()*0.8)) {
+    playlist[currentSong].rewind();
+  }
+  //true = 75% played we stop and rewind
+  // } else {
+  //currentSong at end of FILE
+  
+  //currentSong = currentSong + 1; //currentSong++; currentSong+=1
+  //playlist[currentSong].play();
 }
 
-void keyPressed () {
-  if (key== 'P'|| key== 'p') { //play and pause button
-    playlist[currentSong].play();
-    if (!playlist[currentSong].isPlaying()) {
-      playlist[currentSong].play();
-    } else {
-      playlist [currentSong].pause();
 
-      
+
+void keyPressed () {
+  if (key== 'P'|| key== 'p') { //play and pause button;
+    if (playlist[currentSong].isPlaying()) {
+      playlist [currentSong].pause();
+    } else {
+      playlist[currentSong].play();
     }
   }
 }
+
 
 void mousePressed() {
 }
