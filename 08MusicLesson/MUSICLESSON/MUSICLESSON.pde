@@ -19,6 +19,7 @@ AudioMetaData[] playlistMetaData = new AudioMetaData[numberMusicSongs];
 int currentSong = 0;
 Boolean looping = false;
 Boolean pause=true;
+Boolean randomMusic=false;
 int skip;
 PFont generalFont;
 //String testingOnly ="1";
@@ -51,12 +52,16 @@ void setup() {
   String pathMusicUNOwen = sketchPath(pathwayMusic+UNOwen+extensionMusic);
   String pathMusicGoldenNocturne = sketchPath(pathwayMusic+GoldenNocturne+extensionMusic);
   //println ( path );
+  currentSong= 0;
   //println("absolute path", pathMusicAlive);
   filePathNameSoundEffect[0] = pathwaysoundEffects+ quitButtonSound+extensionMusic;
   filePathNameMusic[currentSong] = pathMusicAlive;
-  filePathNameMusic[currentSong+=1] = pathMusicUNOwen;
-  filePathNameMusic[currentSong+=1] = pathMusicGoldenNocturne;
+  filePathNameMusic[1] = pathMusicUNOwen;
+  filePathNameMusic[2] = pathMusicGoldenNocturne;
   soundEffects = minim.loadFile( filePathNameSoundEffect[0] );
+  currentSong= 0;
+
+  
   //
 
   //Note: Music starts before CANVAS ... Purpose of Player
@@ -146,26 +151,26 @@ void draw() {
     //true if song less than something seconds stop, if greater then restart
   } else if (looping == false && !playlist.isPlaying() && (playlist.position() > playlist.length()*0.8)) {
     playlist.rewind();
-  } else {
+  } /*else {
     if (currentSong >=numberMusicSongs-1) {
-      currentSong=0;
-    }/* else {
+      currentSong=0;println("dop");
+   } else {
       currentSong+=1;
     }
     playlist =  minim.loadFile( filePathNameMusic[currentSong] );
     playlist.play();
     println(currentSong);
-    println("aw");*/
-  }
+    println("aw");
+  }*/
   //
   if ( !playlist.isPlaying() && pause==false ) { // error: else required , stop and pause do same thing broken. Boolean will fix
     playlist.pause();
     playlist.rewind();
 
     if (currentSong >=numberMusicSongs-1) {
-      currentSong=0;
+      currentSong=0; println("dopp");
     } else {
-      currentSong+=1;
+      currentSong+=1;  println("dowpp");
     }
     playlist =  minim.loadFile( filePathNameMusic[currentSong] );
     playlist.play();
@@ -173,7 +178,7 @@ void draw() {
     println("awaaa");
   } else { //empty no code, means ignores Next Feature in draw
   }
-  
+  //println(currentSong);
 }
 
 
@@ -230,6 +235,7 @@ void keyPressed () {
     playlist =  minim.loadFile( filePathNameMusic[currentSong] );
     playlist.play();
     pause=false;
+     println(currentSong);
   }
   println(currentSong);
   if ( key=='F' || key=='f' ) {
@@ -238,30 +244,41 @@ void keyPressed () {
      - Create a void next() to group this code if needing to use it other places
      - NEXT Button
      */
-    if (playlist.position() < 100) pause =true;playlist.pause();
+    if (playlist.position() < 100) {pause =true;playlist.pause();
     playlist.rewind();
-    currentSong+=1 ;
+          if (currentSong >=2) {
+        currentSong=0; println("dopc");
+      } else {
+        currentSong+=1;println("dopb");
+      } 
+      
     playlist =  minim.loadFile( filePathNameMusic[currentSong] );
     playlist.play();
-    pause=false;
+    pause=false; }
     //println(currentSong);
-    if (playlist.position() >= 10000 && playlist.position()<=playlist.length()*0.75 ) playlist.skip(skip);
-    if (playlist.position()>playlist.length()*0.75); playlist.pause();
+    if (playlist.position() >= 100 && playlist.position()<=playlist.length()*0.75 ) {playlist.skip(skip); println("au");}
+    //
+    if (playlist.position()>playlist.length()*0.75);
     {
+      println(playlist.position());
+      println(playlist.length()*0.75);
+      playlist.pause();
       playlist.rewind();
       //trycatch solves arrayListOutOfBounds
-      if (currentSong >=numberMusicSongs-1) {
-        currentSong=0;
+      if (randomMusic==true) currentSong =int(random(numberMusicSongs - numberMusicSongs, numberMusicSongs)); else{
+      if (currentSong >=2) {
+        currentSong=0; println("dopa");
       } else {
         currentSong+=1;
-      }
+      } 
+      
+      println("longer osition");
+      println(currentSong);
       playlist =  minim.loadFile( filePathNameMusic[currentSong] );
       playlist.play();
-      println("awawawawawa");
-      println(currentSong);
       playlist.skip( skip ) ; //SKIP Forward 1 second (1000 milliseconds)
       //println ( "New Value of SKIP", skip, "Position:", playlist.position(), "Crossed Last 75%", playlist.position()>playlist.length()*0.75, "\t\tLast 75% starts at:", playlist.length()*0.75, "Song Ends at:", playlist.length() ) ;
-    }
+    } } }
     if ( key=='R' || key=='r' ) {
       /* Previous Code
        - Order of Nested IFs: <10 seconds, between 10 & 75%, >75%, then else allows for regular skip on any file when not playing
@@ -271,7 +288,7 @@ void keyPressed () {
       //println ( "New Value of SKIP", skip, "Position:", playlist.position(), "Crossed Last 75%", playlist.position()>playlist.length()*0.75, "\t\tLast 75% starts at:", playlist.length()*0.75, "Song Ends at:", playlist.length() ) ;
     }
   }
-}
+
 
 void mousePressed() {
 }
