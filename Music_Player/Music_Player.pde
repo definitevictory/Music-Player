@@ -155,10 +155,11 @@ void setup() {
   //println("absolute path", pathMusicAlive);
   currentSong=0;
   filePathNameSoundEffect[0] = pathwaysoundEffects+ quitButtonSound+extensionMusic;
-  filePathNameMusic[0] = pathMusicAlive;
+  filePathNameMusic[currentSong] = pathMusicAlive;
   filePathNameMusic[1] = pathMusicUNOwen;
   filePathNameMusic[2] = pathMusicGoldenNocturne;
   soundEffects = minim.loadFile( filePathNameSoundEffect[0] );
+  currentSong= 0;
   //
   playlist =  minim.loadFile( filePathNameMusic[currentSong] );
   //println (minim.loadFile( filePathNameMusic[currentSong] ));
@@ -167,7 +168,6 @@ void setup() {
   playlistMetaData[0] = minim.loadFile(filePathNameMusic[0]).getMetaData();
   playlistMetaData[1] = minim.loadFile(filePathNameMusic[1]).getMetaData();
   playlistMetaData[2] = minim.loadFile(filePathNameMusic[2]).getMetaData();
-  currentSong=0;
 
   //
   //whiteMode= true; //must ask to see blue light
@@ -238,10 +238,11 @@ void draw() {
     imageXLEFT = imageWidth + imageX - CoverImageWidthAdjusted2;
     imageYCENTER = imageY + (imageHeight-CoverImageHeightAdjusted2)/2;
   }
-  currentSong=0;
+
+
     playlistMetaData[currentSong] =playlist.getMetaData();
   //printArray(filePathNameMusic[0]);
-  println(playlistMetaData[2].length());
+  println(playlistMetaData[currentSong].length());
   println(currentSong);
   Colouring();
   MUSICA();
@@ -295,6 +296,11 @@ void keyPressed() { //Listener
   if (key== 'G'|| key== 'g') playlist.skip(skip);
   if (key== 'B'|| key== 'b') currentSong+=1;
       if (key== 'C'|| key== 'c') currentSong = int(random(numberMusicSongs - numberMusicSongs, numberMusicSongs));
+            if (key== 'L'|| key== 'l')       playlist.pause();
+      playlist.rewind();
+      currentSong = int(random(numberMusicSongs - numberMusicSongs, numberMusicSongs));
+            playlist =  minim.loadFile( filePathNameMusic[currentSong] );
+      playlist.play();
 }
 
 
