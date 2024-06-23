@@ -267,8 +267,8 @@ void draw() {
   MUSICA();
   LoopNumber = LoopTimes-1;
   looping = false;
- println(playlist.position());
- println(playlist.length());
+ //println(playlist.position());
+ //println(playlist.length());
   //
 
 
