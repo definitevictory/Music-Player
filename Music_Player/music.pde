@@ -22,13 +22,13 @@ void MUSICA () {
     playlist.pause();
     playlist.rewind();
 
-    if (currentSong >=numberMusicSongs-1) {
-      currentSong=0;
-      println("dopp");
-    } else {
-      currentSong+=1;
-      println("dowpp");
-    }
+      if (randomMusic==true) currentSong =int(random(numberMusicSongs - numberMusicSongs, numberMusicSongs));
+      else {
+        if (currentSong >=2) {
+          currentSong=0;
+        } else {
+          currentSong+=1;
+        }
     playlist =  minim.loadFile( filePathNameMusic[currentSong] );
     playlist.play();
     println(currentSong);
@@ -36,4 +36,4 @@ void MUSICA () {
     looping=false;
     LoopTimes=1;
   }
-}
+}}
