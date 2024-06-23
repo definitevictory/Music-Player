@@ -267,7 +267,8 @@ void draw() {
   MUSICA();
   LoopNumber = LoopTimes-1;
   looping = false;
-
+ println(playlist.position());
+ println(playlist.length());
   //
 
 
@@ -330,7 +331,7 @@ void mousePressed() { //Listener
     soundeffect_1();
   }
   //play button
-  if (mouseX>playX && mouseX<playX+playWidth && mouseY>playY && mouseY<playY+playHeight) {
+  if (mouseX>playX && mouseX<playX+playWidth && mouseY>playY && mouseY<playY+playHeight) { soundeffect_2();
     if (playlist.isPlaying()) {
       pause=true;
       playlist.pause();
@@ -352,24 +353,24 @@ void mousePressed() { //Listener
       }
     }
   }
-  if (mouseX>menuX && mouseX<menuX+menuWidth && mouseY>menuY && mouseY<menuY+menuHeight) {
+  if (mouseX>menuX && mouseX<menuX+menuWidth && mouseY>menuY && mouseY<menuY+menuHeight) { soundeffect_1ver2();
     if (menuShow == false) {
       menuShow = true;
     } else {
       menuShow=false;
     }
   }
-  if (mouseX>LoopX && mouseX<LoopX+LoopWidth && mouseY>LoopY && mouseY<LoopY+LoopHeight) if (LoopMenu==false) {
+  if (mouseX>LoopX && mouseX<LoopX+LoopWidth && mouseY>LoopY && mouseY<LoopY+LoopHeight) if (LoopMenu==false) { soundeffect_1ver2();
     LoopMenu=true;
   } else {
     LoopMenu=false;
   }
-  if (mouseX>LoopMCX && mouseX<LoopMCX+LoopMCWidth && mouseY>LoopMCY && mouseY<LoopMCY+LoopMCHeight) if (LoopMenu==true) {
+  if (mouseX>LoopMCX && mouseX<LoopMCX+LoopMCWidth && mouseY>LoopMCY && mouseY<LoopMCY+LoopMCHeight) if (LoopMenu==true) { soundeffect_1ver2();
     LoopMenu=false;
   }
   //
 
-  if (mouseX>forwardX && mouseX<forwardX+forwardWidth && mouseY>forwardY && mouseY<forwardY+forwardHeight) {// skipX, skipY, skipWidth, skipHeight
+  if (mouseX>forwardX && mouseX<forwardX+forwardWidth && mouseY>forwardY && mouseY<forwardY+forwardHeight) {soundeffect_2();// skipX, skipY, skipWidth, skipHeight
     /* NEXT Code
      - Order of Nested IFs: <10 seconds, between 10 & 75%, >75%, then else allows for regular skip on any file when not playing
      - Create a void next() to group this code if needing to use it other places
@@ -381,16 +382,17 @@ void mousePressed() { //Listener
       Infinite=false;
       playlist.pause();
       playlist.rewind();
-      if (currentSong >=2) {
-        currentSong=0;
-      } else {
-        currentSong+=1;
-      }
-
+      if (randomMusic==true) currentSong =int(random(numberMusicSongs - numberMusicSongs, numberMusicSongs));
+      else {
+        if (currentSong >=2) {
+          currentSong=0;
+        } else {
+          currentSong+=1;
+        }
       playlist =  minim.loadFile( filePathNameMusic[currentSong] );
       playlist.play();
       pause=false;
-    }
+    }}
     //println(currentSong);
     if (playlist.position() >= 10000 && playlist.position()<=playlist.length()*0.9*LoopTimes ) {
       playlist.skip(skip);
@@ -422,14 +424,14 @@ void mousePressed() { //Listener
       }
     }
   }
-  if (mouseX>LoopInfX && mouseX<LoopInfX+LoopInfWidth && mouseY>LoopInfY && mouseY<LoopInfY+LoopInfHeight &&  LoopMenu ==true) {
+  if (mouseX>LoopInfX && mouseX<LoopInfX+LoopInfWidth && mouseY>LoopInfY && mouseY<LoopInfY+LoopInfHeight &&  LoopMenu ==true) { soundeffect_1ver2();
     looping=true;
     playlist.loop();
     pause=false;
     LoopTimes=1; //please remember to make timer infinite when this turned on
     Infinite = true;
   }
-  if (mouseX>LoopaddX && mouseX<LoopaddX+LoopaddWidth && mouseY>LoopaddY && mouseY<LoopaddY+LoopaddHeight &&  LoopMenu ==true) {looping=true;
+  if (mouseX>LoopaddX && mouseX<LoopaddX+LoopaddWidth && mouseY>LoopaddY && mouseY<LoopaddY+LoopaddHeight &&  LoopMenu ==true) {looping=true; soundeffect_1ver2();
     LoopTimes+=1;
     pause=true;
     playlist.pause();
@@ -439,7 +441,7 @@ void mousePressed() { //Listener
     
   }
 
-  if (mouseX>pauseX && mouseX<pauseX+pauseWidth && mouseY>pauseY && mouseY<pauseY+pauseHeight) {
+  if (mouseX>pauseX && mouseX<pauseX+pauseWidth && mouseY>pauseY && mouseY<pauseY+pauseHeight) {soundeffect_2();
     pause=true;
     playlist.pause();
     playlist.rewind();
@@ -448,24 +450,25 @@ void mousePressed() { //Listener
     Infinite=false;
   }
 
-  if (mouseX>SkipSwitchX && mouseX<SkipSwitchX+SkipSwitchWidth && mouseY>SkipSwitchY && mouseY<SkipSwitchY+SkipSwitchHeight && LoopMenu ==true) {
+  if (mouseX>SkipSwitchX && mouseX<SkipSwitchX+SkipSwitchWidth && mouseY>SkipSwitchY && mouseY<SkipSwitchY+SkipSwitchHeight && LoopMenu ==true) { soundeffect_2();
     if (skip==5000)
       skip = 30000;
     else {
       skip = 5000;
     }
   }
-  if (mouseX>LightModeX && mouseX<LightModeX+LightModeWidth && mouseY>LightModeY && mouseY<LightModeY+LightModeHeight && LoopMenu ==true) {
+  if (mouseX>LightModeX && mouseX<LightModeX+LightModeWidth && mouseY>LightModeY && mouseY<LightModeY+LightModeHeight && LoopMenu ==true) { soundeffect_1ver2();
     if (lightMode==true) lightMode=false; else{lightMode=true;}
   }
-  if (mouseX>NightModeX && mouseX<NightModeX+NightModeWidth && mouseY>NightModeY && mouseY<NightModeY+NightModeHeight && LoopMenu ==true) {
+  if (mouseX>NightModeX && mouseX<NightModeX+NightModeWidth && mouseY>NightModeY && mouseY<NightModeY+NightModeHeight && LoopMenu ==true) { soundeffect_1ver2();
     if (dayMode==true) dayMode=false; else{dayMode=true;}
   }
-    if (mouseX>volPicX && mouseX<volPicX+volPicWidth && mouseY>volPicY && mouseY<volPicY+volPicHeight) if (playlist.isMuted()) {
+    if (mouseX>volPicX && mouseX<volPicX+volPicWidth && mouseY>volPicY && mouseY<volPicY+volPicHeight) if (playlist.isMuted()) { soundeffect_1ver2();
     playlist.unmute();
   } else {
     playlist.mute();}
-
+  if (mouseX>RandoModeX && mouseX<RandoModeX+RandoModeWidth && mouseY>RandoModeY && mouseY<RandoModeY+RandoModeHeight) if (randomMusic==true) {randomMusic=false;} else{randomMusic=true;}
+   if (mouseX>rewindX && mouseX<rewindX+rewindWidth && mouseY>rewindY && mouseY<rewindY+rewindHeight)   {playlist.skip(-skip); soundeffect_1ver2();}
   //
   //
   //End mousePressed
